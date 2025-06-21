@@ -1,0 +1,58 @@
+{% extends "header.html" %}
+{% block block1 %}
+
+<div class="container py-5">
+    {% for paper in all_papers %}
+    <article class="card mb-5 shadow-lg border-0 rounded-4">
+        <div class="row g-0 align-items-center">
+
+            <!-- Profile Image -->
+            <div class="col-md-3 d-flex justify-content-center align-items-center p-4">
+                <img src="{{ url_for('static', filename='profile_photos/' + (paper.Author.profile_photo or 'default.jpg')) }}"
+                     class="rounded-circle border border-3 shadow"
+                     style="width: 160px; height: 160px; object-fit: cover;">
+            </div>
+
+            <!-- Paper Content -->
+            <div class="col-md-9">
+                <div class="card-body px-4 py-3">
+
+                    <!-- Author Name -->
+                    <h6 class="text-muted mb-1">
+                        <a href="{{ url_for('profile', id=paper.author_id) }}"
+                           class="text-decoration-none text-dark fw-semibold">
+                            👤 {{ paper.Author.user_name }}
+                        </a>
+                    </h6>
+
+                    <!-- Paper Title -->
+                    <h4 class="card-title fw-bold text-dark">
+                        <a href="{{ url_for('showpaper', id=paper.id) }}" class="text-decoration-none text-dark">
+                            {{ paper.Title }}
+                        </a>
+                    </h4>
+
+                    <!-- Upload Date -->
+                    <p class="small text-muted mb-2">
+                        <i class="fa fa-clock me-1"></i> Uploaded on {{ paper.DateUploaded.strftime('%B %d, %Y') }}
+                    </p>
+
+                    <!-- Abstract Snippet -->
+                    <p class="card-text text-muted small" style="text-align: justify;">
+                        {{ paper.Abstract[:250] }}{% if paper.Abstract|length > 250 %}...{% endif %}
+                    </p>
+
+                    <!-- Read More Button -->
+                    <a href="{{ url_for('showpaper', id=paper.id) }}"
+                       class="btn btn-outline-primary btn-sm fw-semibold px-4 py-2 shadow-sm rounded-pill">
+                        Read more <i class="fa fa-angle-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+{% endblock %}

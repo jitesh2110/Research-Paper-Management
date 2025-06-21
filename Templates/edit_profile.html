@@ -1,0 +1,93 @@
+{% include "header.html" %}
+{% block block1 %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h2 class="text-center fw-bold">Edit Profile</h2>
+        <p class="text-center text-muted">Update your details</p>
+
+        <form method="POST" action="{{ url_for('edit_profile') }}" enctype="multipart/form-data">
+
+            <!-- Name (Read-only) -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Full Name</label>
+                <input type="text" class="form-control" name="name" value="{{ current_user.name }}" readonly>
+            </div>
+
+            <!-- Email (Read-only) -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" name="email" value="{{ current_user.email }}" readonly>
+            </div>
+
+            <!-- College Details -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">College Name</label>
+                        <input type="text" class="form-control" name="college" value="{{ current_user.college }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Location</label>
+                        <input type="text" class="form-control" name="location" value="{{ current_user.location }}" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Department</label>
+                <select class="form-select" name="department" required>
+                    <option value="IT" {% if current_user.department == 'IT' %}selected{% endif %}>Information Technology</option>
+                    <option value="CSE" {% if current_user.department == 'CSE' %}selected{% endif %}>Computer Science & Engineering</option>
+                    <option value="ECE" {% if current_user.department == 'ECE' %}selected{% endif %}>Electronics & Communication</option>
+                    <option value="ME" {% if current_user.department == 'ME' %}selected{% endif %}>Mechanical Engineering</option>
+                    <option value="CE" {% if current_user.department == 'CE' %}selected{% endif %}>Civil Engineering</option>
+                    <option value="Other" {% if current_user.department == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+
+            <!-- About Section -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Brief About You</label>
+                <textarea class="form-control" name="about" rows="3" placeholder="Write a short introduction about yourself">{{ current_user.about }}</textarea>
+            </div>
+
+            <!-- Fields of Interest -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Fields of Interest</label>
+                <input type="text" class="form-control" name="fields" value="{{ current_user.fields }}" placeholder="e.g. AI, Machine Learning, IoT">
+            </div>
+
+            <!-- Collaboration Preferences -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Open to Collaboration?</label>
+                <select class="form-select" name="collaboration">
+                    <option value="Yes" {% if current_user.collaboration == 'Yes' %}selected{% endif %}>Yes, I am open to collaborations</option>
+                    <option value="No" {% if current_user.collaboration == 'No' %}selected{% endif %}>No, I prefer working alone</option>
+                </select>
+            </div>
+
+            <!-- Profile Photo Upload -->
+            <div class="mb-3">
+            <label class="form-label fw-bold">Upload Profile Photo</label>
+             <input class="form-control" type="file" name="profile_photo" accept="image/*">
+             {% if current_user.profile_photo %}
+             <div class="mt-2">
+                 <img src="{{ url_for('static', filename='profile_photos/' + current_user.profile_photo) }}" alt="Profile Photo" class="img-thumbnail" width="150">
+             </div>
+             {% endif %}
+             </div>
+
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary w-50">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

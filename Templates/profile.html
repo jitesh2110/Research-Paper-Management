@@ -1,0 +1,74 @@
+{% include "header.html" %}
+{% block block1 %}
+
+<div class="container my-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4">
+
+        <!-- Profile Header Section -->
+        <div class="row align-items-center">
+            <!-- Profile Image -->
+            <div class="col-md-3 text-center mb-4 mb-md-0">
+                <img src="{{ url_for('static', filename='profile_photos/' + (user.profile_photo or 'default.jpg')) }}"
+                     class="rounded-circle border border-3 shadow-sm"
+                     style="width: 180px; height: 180px; object-fit: cover;">
+            </div>
+
+            <!-- Name and Info -->
+            <div class="col-md-9">
+                <h2 class="fw-bold mb-1">{{ user.user_name }}</h2>
+                <p class="text-muted fs-5 mb-1">Teacher | Researcher</p>
+                <p class="text-muted mb-3">{{ user.college }}</p>
+                <p class="fst-italic text-secondary">{{ user.about }}</p>
+
+                <!-- Buttons -->
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    {% if current_user.id==user.id %}
+                    <a href="{{ url_for('edit_profile') }}" class="btn btn-outline-secondary">
+                        ✏️ Edit Profile
+                    </a>
+                    <a href="{{ url_for('takepaper') }}" class="btn btn-secondary">
+                        ➕ Add Paper
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('show_research_papers', id=user.id) }}" class="btn btn-outline-success">
+                        📄 View Papers
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="my-5">
+
+        <!-- Info Section -->
+        <div class="row g-4">
+
+            <!-- Personal Details -->
+            <div class="col-md-6">
+                <div class="border rounded-3 p-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark mb-3">👤 Personal Details</h5>
+                    <p><strong>Name:</strong> {{ user.user_name }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>College:</strong> {{ user.college or "N/A" }}</p>
+                    <p><strong>Department:</strong> {{ user.department or "N/A" }}</p>
+                    <p><strong>Profession:</strong> Teacher & Researcher</p>
+                </div>
+            </div>
+
+            <!-- Research & Contributions -->
+            <div class="col-md-6">
+           <div class="border rounded-3 p-4 shadow-sm h-100">
+               <h5 class="fw-bold text-dark mb-3">📚 Research & Contributions</h5>
+               <p><strong>Published Papers:</strong> {{ count }}</p>
+               <p><strong>Total Citations:</strong> {{ user.citations or "0" }}</p>
+               <p><strong>Fields of Interest:</strong> {{ user.fields or "Not specified" }}</p>
+               <p><strong>Collaborations:</strong> {{ user.collaboration or "Not specified" }}</p>
+               <p><strong>Contact:</strong> {{ user.email }}</p>
+           </div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

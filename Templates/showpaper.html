@@ -1,0 +1,78 @@
+{% include "header.html" %}
+
+{% block block1 %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 p-4 rounded-4">
+        <div class="row g-4">
+
+            <!-- Left Column -->
+            <div class="col-12 col-lg-7">
+                <h2 class="fw-bold text-dark">{{ paper.Title }}</h2>
+                <p class="text-muted">📅 Uploaded on {{ paper.DateUploaded.strftime('%B %d, %Y') }}</p>
+                <p class="text-muted">📑 Citations: {{ paper.Citations or 0 }}</p>
+                <p class="text-muted">📌 Type: {{ paper.Type }}</p>
+
+                <hr>
+
+                <h5 class="fw-semibold text-dark">👤 Author Details</h5>
+                <ul class="list-unstyled text-secondary">
+                    <li><strong>Authors:</strong>
+                        <ul>
+                            {% for author in paper.Authors.split(',') %}
+                                <li>{{ author.strip() }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><strong>Department:</strong> {{ paper.Author.department or 'N/A' }}</li>
+                    <li><strong>College:</strong> {{ paper.Author.college or 'N/A' }}</li>
+                    <li><strong>Profession:</strong> Teacher & Researcher</li>
+                </ul>
+
+                <h5 class="fw-semibold text-dark">📚 Publication Info</h5>
+                <ul class="list-unstyled text-secondary">
+                    <li><strong>{{ paper.Type }} Name:</strong> {{ paper.Journal_Conference_Name or 'N/A' }}</li>
+
+                    {% if paper.Type == 'Conference' %}
+                        <li><strong>Conference Venue:</strong> {{ paper.Conference_Venue or 'N/A' }}</li>
+                    {% endif %}
+
+                    <li><strong>{{ paper.Type }} Date:</strong> {{ paper.Publication_Date.strftime('%B %d, %Y') if paper.Publication_Date else 'N/A' }}</li>
+
+                    <li><strong>Paper URL:</strong>
+                        {% if paper.Paper_URL %}
+                            <a href="{{ paper.Paper_URL }}" target="_blank">{{ paper.Paper_URL }}</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </li>
+
+                    <li><strong>ISSN:</strong> {{ paper.ISSN or 'N/A' }}</li>
+                    <li><strong>ISBN:</strong> {{ paper.ISBN or 'N/A' }}</li>
+                </ul>
+
+                <h5 class="fw-semibold text-dark">📄 Abstract</h5>
+                <p class="text-muted" style="text-align: justify;">{{ paper.Abstract }}</p>
+
+                <!-- 📥 Download Button -->
+                <a href="{{ url_for('download', filepath=paper.Filepath, id=paper.id) }}" class="btn btn-success mt-3 px-4 py-2 shadow">
+                    <i class="fa fa-download me-2"></i> Download Full Paper
+                </a>
+            </div>
+
+            <!-- Right Column: PDF Preview -->
+            <div class="col-12 col-lg-5">
+                <h5 class="fw-semibold text-dark">🔍 Paper Preview</h5>
+                <div class="border rounded shadow-sm overflow-hidden" style="height: 600px;">
+                    <iframe
+                        src="{{ url_for('preview_paper', id=paper.id) }}"
+                        width="100%"
+                        height="100%"
+                        style="border: none;">
+                    </iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

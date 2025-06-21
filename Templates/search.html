@@ -1,0 +1,62 @@
+<!-- templates/search.html -->
+{% extends "header.html" %}
+{% block block1 %}
+<div class="container py-5">
+    <h2 class="fw-bold text-center mb-4">🔍 Search Research Papers</h2>
+    <form action="{{ url_for('search_ui',a=1) }}" method="get" class="row g-3">
+        <div class="col-md-4">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" placeholder="e.g. Machine Learning">
+        </div>
+        <div class="col-md-4">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" name="author" placeholder="e.g. Jitesh Deshmukh">
+        </div>
+        <div class="col-md-4">
+            <label for="type" class="form-label">Type</label>
+            <select name="type" class="form-select">
+                <option value="">All Types</option>
+                <option value="Journal">Journal</option>
+                <option value="Conference">Conference</option>
+                <option value="Patent">Patent</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="journal" class="form-label">Journal/Conference</label>
+            <input type="text" class="form-control" name="journal" placeholder="e.g. IEEE Access">
+        </div>
+        <div class="col-md-4">
+            <label for="issn" class="form-label">ISSN</label>
+            <input type="text" class="form-control" name="issn">
+        </div>
+        <div class="col-md-4">
+            <label for="isbn" class="form-label">ISBN</label>
+            <input type="text" class="form-control" name="isbn">
+        </div>
+        <div class="col-md-4">
+            <label for="start_date" class="form-label">Start Date</label>
+            <input type="date" class="form-control" name="start_date">
+        </div>
+        <div class="col-md-4">
+            <label for="end_date" class="form-label">End Date</label>
+            <input type="date" class="form-control" name="end_date">
+        </div>
+        <div class="col-md-4">
+            <label for="sort_by" class="form-label">Sort By</label>
+            <select name="sort_by" class="form-select">
+                <option value="">Default</option>
+                <option value="date">Publication Date</option>
+                <option value="citations">Citations</option>
+                <option value="title">Title</option>
+            </select>
+        </div>
+        <div class="col-12 d-grid">
+            <button type="submit" class="btn btn-primary btn-lg mt-3">Search</button>
+        </div>
+    </form>
+    <div class="col-12 d-grid">
+    <a href="{{ url_for('search_ui',a=2) }}" class="btn btn-success btn-lg mt-2">📄 Download Summary</a>
+</div>
+
+</div>
+{% endblock %}

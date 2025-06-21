@@ -1,0 +1,46 @@
+{% include "header.html" %}
+{% block block1 %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4 w-100" style="max-width: 480px; border-radius: 1rem;">
+
+        <!-- Heading -->
+        <h2 class="text-center mb-3 fw-bold text-dark">Register</h2>
+        <p class="text-center text-muted">Join <strong>ResearchHub</strong> and start sharing knowledge!</p>
+
+        <!-- Register Form -->
+        <form method="POST" action="{{url_for('register',x=0)}}">
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="name" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+            </div>
+
+            <!-- Register Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-dark btn-lg">Register</button>
+            </div>
+
+            <!-- Login Link -->
+            <div class="text-center mt-3">
+                <a href="{{ url_for('login') }}" class="text-decoration-none">Already have an account? Login</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

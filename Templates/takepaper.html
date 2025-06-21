@@ -1,0 +1,101 @@
+{% include "header.html" %}
+
+{% block block1 %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <!-- Heading -->
+                    <h2 class="text-center mb-3 fw-bold text-dark">Submit Research Paper</h2>
+                    <p class="text-center text-muted mb-4">Fill out the form to upload your work.</p>
+
+                    <!-- Form -->
+                    <form action="#" method="POST" enctype="multipart/form-data">
+
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label fw-semibold text-dark">Paper Title</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter paper title" required>
+                        </div>
+
+                        <!-- Authors -->
+                        <div class="mb-3">
+                            <label for="authors" class="form-label fw-semibold text-dark">Authors <small class="text-muted">(separated by commas)</small></label>
+                            <input type="text" class="form-control" name="authors" id="authors" placeholder="e.g. Jitesh Deshmukh, Niraj Patil" required>
+                        </div>
+
+                        <!-- Type -->
+                        <div class="mb-3">
+                            <label for="type" class="form-label fw-semibold text-dark">Type</label>
+                            <select class="form-select" id="type" name="type" required>
+                                <option value="" disabled selected>Select type</option>
+                                <option value="Journal">Journal</option>
+                                <option value="Conference">Conference</option>
+                                <option value="Patent">Patent</option>
+                            </select>
+                        </div>
+
+                        <!-- Journal/Conference/Patent Name -->
+                        <div class="mb-3">
+                            <label for="journal_name" class="form-label fw-semibold text-dark">Name of Journal / Conference / Patent</label>
+                            <input type="text" class="form-control" id="journal_name" name="journal_name" placeholder="e.g. IEEE Access, ICML 2024, USPTO">
+                        </div>
+
+                        <!-- Conference Venue -->
+                        <div class="mb-3">
+                            <label for="conference_venue" class="form-label fw-semibold text-dark">Conference Venue <small class="text-muted">(Only if type is Conference)</small></label>
+                            <input type="text" class="form-control" id="conference_venue" name="conference_venue" placeholder="e.g. New Delhi, India">
+                        </div>
+
+                        <!-- Publication Date -->
+                        <div class="mb-3">
+                            <label for="publication_date" class="form-label fw-semibold text-dark">Publication Date</label>
+                            <input type="date" class="form-control" id="publication_date" name="publication_date">
+                        </div>
+
+                        <!-- Paper URL -->
+                        <div class="mb-3">
+                            <label for="paper_url" class="form-label fw-semibold text-dark">Paper URL <small class="text-muted">(DOI or IJISAE)</small></label>
+                            <input type="url" class="form-control" id="paper_url" name="paper_url" placeholder="https://example.com/your-paper">
+                        </div>
+
+                        <!-- ISSN and ISBN -->
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="issn" class="form-label fw-semibold text-dark">ISSN</label>
+                                <input type="text" class="form-control" id="issn" name="issn" placeholder="e.g. 1234-5678">
+                            </div>
+                            <div class="col">
+                                <label for="isbn" class="form-label fw-semibold text-dark">ISBN</label>
+                                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="e.g. 978-3-16-148410-0">
+                            </div>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="mb-3">
+                            <label for="summary" class="form-label fw-semibold text-dark">Summary</label>
+                            <textarea class="form-control" id="summary" name="summary" rows="4" placeholder="Enter paper summary" required></textarea>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div class="mb-4">
+                            <label for="document" class="form-label fw-semibold text-dark">Upload Document</label>
+                            <input class="form-control" type="file" id="document" name="document" accept=".pdf,.doc,.docx" required>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark btn-lg">Submit Paper</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

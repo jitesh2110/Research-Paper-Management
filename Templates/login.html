@@ -1,0 +1,40 @@
+{% include "header.html" %}
+{% block block1 %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4 w-100" style="max-width: 480px; border-radius: 1rem;">
+
+        <!-- Heading -->
+        <h2 class="text-center mb-3 fw-bold text-dark">Login</h2>
+        <p class="text-center text-muted">Welcome back! Please login to continue.</p>
+
+        <!-- Login Form -->
+        <form method="POST">
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Login Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-dark btn-lg">Login</button>
+            </div>
+
+            <!-- Register Link -->
+            <div class="text-center mt-3">
+                <a href="{{ url_for('register',x=0) }}" class="text-decoration-none">Create an account</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

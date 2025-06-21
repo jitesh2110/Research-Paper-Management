@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+{% block block1 %}
+
+<!-- About Us Section -->
+<section class="container mt-5 text-center">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-bold text-black mb-3">About Us</h1>
+            <p class="lead text-muted">
+                Welcome to <strong>ResearchHub</strong>, a platform dedicated to sharing and accessing high-quality research papers.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Vision & Features Section -->
+<section class="container mt-5">
+    <div class="row g-4">
+        <!-- Our Vision -->
+        <div class="col-md-6">
+            <div class="p-4 shadow-sm rounded-4 bg-light">
+                <h3 class="fw-bold text-dark mb-3">
+                    <i class="fas fa-lightbulb text-primary me-2"></i> Our Vision
+                </h3>
+                <p class="text-muted">
+                    We aim to make research more accessible and impactful by offering a user-friendly platform where knowledge is freely shared and discussed.
+                </p>
+            </div>
+        </div>
+
+        <!-- Why Choose Us? -->
+        <div class="col-md-6">
+            <div class="p-4 shadow-sm rounded-4 bg-light">
+                <h3 class="fw-bold text-dark mb-3">
+                    <i class="fas fa-check-circle text-success me-2"></i> Why Choose Us?
+                </h3>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2"><i class="fas fa-globe text-primary me-2"></i><strong> Open Access:</strong> Research papers are easily accessible to everyone.</li>
+                    <li class="mb-2"><i class="fas fa-users text-success me-2"></i><strong> Collaborative Community:</strong> Connect with scholars and researchers worldwide.</li>
+                    <li class="mb-2"><i class="fas fa-shield-alt text-warning me-2"></i><strong> Secure & Credible:</strong> Ensuring quality and authenticity in academic publishing.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <p class="mb-0">&copy; 2025 <strong>ResearchHub</strong> | Empowering Knowledge Sharing</p>
+</footer>
+
+{% endblock %}
